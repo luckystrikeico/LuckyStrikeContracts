@@ -5,8 +5,8 @@
 pragma solidity 0.4.20;
 
 /*
-Lucky Strike smart contracts version: 7.1.0
-last change: 2019-07-26
+Lucky Strike smart contracts version: 8.0.0
+last change: 2019-08-05
 */
 
 /*
@@ -223,7 +223,8 @@ contract LuckyStrikeTokens {
             return takeIncome(_value);
         }
 
-        require(!tokenSaleIsRunning);
+        // change in ver. 8.0.0: now we allow tokens transfers during the sale
+        // require(!tokenSaleIsRunning);
 
         // Transfers of 0 values MUST be treated as normal transfers and fire the Transfer event (ERC-20)
         require(_value >= 0);

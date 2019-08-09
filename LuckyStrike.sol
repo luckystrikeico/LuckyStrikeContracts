@@ -4,8 +4,8 @@ pragma solidity 0.4.20;
 // solidity versions > 0.4.20 are not supported by oraclize
 
 /*
-Lucky Strike smart contracts version: 7.1.0
-last change: 2019-07-26
+Lucky Strike smart contracts version: 8.0.0
+last change: 2019-08-05
 */
 
 /*
@@ -1504,10 +1504,11 @@ contract LuckyStrike is usingOraclize {
 
         msg.sender.transfer(lastJackpotSumWon[_jackpotType]);
 
-        lastJackpotSumWon[_jackpotType] = 0;
-
         eventsCounter = eventsCounter + 1;
         JackpotWithdrawal(eventsCounter, _jackpotType, lastJackpotSumWon[_jackpotType], msg.sender);
+
+        // changed in ver. 8.0.0 > set to zero _after_ emitting an event
+        lastJackpotSumWon[_jackpotType] = 0;
     }
 
     // allocation:
